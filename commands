@@ -1,0 +1,7 @@
+npm init // start node applications
+npm start server.js
+npm install -g nodemon //to automatically restart a server when change occurs
+nodemon server.js
+npm install morgan --save
+npm install mongoose
+
