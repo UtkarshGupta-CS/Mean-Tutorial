@@ -14,7 +14,8 @@
   "author": "Utkarsh Gupta",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.16.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
     "mongoose": "^4.8.1",
     "morgan": "^1.8.0",
     "nodemon": "^1.11.0"

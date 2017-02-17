@@ -1,20 +1,22 @@
 var express = require('express');
 var app = express();
-
-// app.get('/',function(req,res){
-//     res.send('Hello World');
-// });
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8082;
 var morgan = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var router = express.Router();
+var appRoutes = require('./app/routes/api')(router);
+var path = require('path');
+
 app.use(morgan('dev'));
 
-// app.get('/home',function(req,res){
-//     res.send ('Hello from Home');
-// });
-
-var mongoose = require('mongoose');
-var User = require('./app/models/user');
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.static(__dirname + '/public'));
+app.use('/api',appRoutes);
+//http://localhost:8081/api/users
 mongoose.connect('mongodb://localhost:27017/tutorial', function (err) {
     if (err) {
         console.log("not connected to the db: " + err);
@@ -23,20 +25,8 @@ mongoose.connect('mongodb://localhost:27017/tutorial', function (err) {
     }
 });
 
-var bodyParser = require('body-parser');
-
-app.use(bodyParser.json);
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-//http://localhost:8080/users 
-app.post('/users', function (req, res) {
-    var user = new User();
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.email = req.body.email;
-    user.save();
+app.get('*',function(req,res){
+    res.sendFile(path.join(__dirname+'/public/app/views/index.html'));
 });
 
 app.listen(port, function () {

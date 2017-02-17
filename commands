@@ -4,4 +4,6 @@ npm install -g nodemon //to automatically restart a server when change occurs
 nodemon server.js
 npm install morgan --save
 npm install mongoose
+npm install body parser --save
+npm install bcrypt-nodejs --save
 
