@@ -1,15 +1,27 @@
-angular.module('appRoutes',['ngRoute'])
+var app = angular.module('appRoutes', ['ngRoute'])
 
-.config(function($routeProvider){
+.config(function($routeProvider,$locationProvider) {
 
     $routeProvider
-    
-    .when('/',{
+
+        .when('/', {
         templateUrl: 'app/views/pages/home.html'
     })
-    
-    .when('/about',{
+
+    .when('/about', {
         templateUrl: 'app/views/pages/about.html'
     })
-    .otherwise({redirectTo:'/'});
-});
+
+    .when('/register',{
+        templateUrl: 'app/views/pages/users/register.html',
+        controller: 'regCtrl',
+        controllerAs: 'register'
+    })
+
+    .otherwise({ redirectTo: '/' })
+
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    })
+})
