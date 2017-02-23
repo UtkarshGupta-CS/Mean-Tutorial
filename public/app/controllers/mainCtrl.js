@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices'])
 
-   .controller('mainCtrl', function (Auth, $location, $timeout, $rootScope) {
+   .controller('mainCtrl', function (Auth, $location, $timeout, $rootScope,$window) {
       var app = this
       app.loadme = false
       $rootScope.$on('$routeChangeStart', function () {
@@ -17,10 +17,18 @@ angular.module('mainController', ['authServices'])
             // console.log('Failure:User is not logged in')
             app.isLoggedIn = false
             app.username = ''
+            app.loadme = true 
+            
          }
+         if($location.hash() == '_=_') $location.hash(null)
 
       })
 
+      this.facebook = function(){
+         // console.log($window.location.host)
+         // console.log($window.location.protocol)
+         $window.location = $window.location.protocol + '//'+ $window.location.host + '/auth/facebook'
+      }
 
       this.doLogin = function (loginData) {
          app.loading = true
@@ -52,3 +60,4 @@ angular.module('mainController', ['authServices'])
          }, 2000)
       }
    })
+   
