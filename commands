@@ -6,4 +6,5 @@ npm install morgan --save
 npm install mongoose
 npm install body parser --save
 npm install bcrypt-nodejs --save
+sudo fuser -k 8082/tcp
 

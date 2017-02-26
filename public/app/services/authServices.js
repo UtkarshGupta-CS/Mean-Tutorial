@@ -23,6 +23,14 @@ angular.module('authServices', [])
         authFactory.facebook = function (token) {
             AuthToken.setToken(token)
         }
+        //Auth.twitter(token)
+        authFactory.twitter = function (token) {
+            AuthToken.setToken(token)
+        }
+        //Auth.google(token)
+        authFactory.google = function (token) {
+            AuthToken.setToken(token)
+        }
         //Auth.getUser()
         authFactory.getUser = function () {
             if (AuthToken.getToken()) {

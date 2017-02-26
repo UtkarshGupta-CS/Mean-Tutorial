@@ -38,3 +38,25 @@ angular.module('userControllers', ['userServices'])
          $location.path('/')
       }
    })
+   .controller('twitterCtrl', function ($routeParams, Auth, $location,$window) {
+      // console.log($routeParams.token)
+      var app = this
+      if ($window.location.pathname == '/twittererror') {
+         //error variable
+         app.errorMsg = 'Twitter email not define'
+      } else {
+         Auth.twitter($routeParams.token)
+         $location.path('/')
+      }
+   })
+   .controller('googleCtrl', function ($routeParams, Auth, $location,$window) {
+      // console.log($routeParams.token)
+      var app = this
+      if ($window.location.pathname == '/googleerror') {
+         //error variable
+         app.errorMsg = 'Google email not define'
+      } else {
+         Auth.twitter($routeParams.token)
+         $location.path('/')
+      }
+   })
